@@ -3,24 +3,18 @@
 #include <algorithm>
 
 using namespace std;
-
-
 struct Edge {
     int src, dest, weight;
-
     
     bool operator<(const Edge &other) const {
         return weight < other.weight;
     }
 };
 
-
 class DSU {
 private:
     vector<int> parent, rank;
-
 public:
-   
     DSU(int n) {
         parent.resize(n);
         rank.resize(n, 0);
@@ -28,7 +22,6 @@ public:
             parent[i] = i;
         }
     }
-
    
     int find(int x) {
         if (parent[x] != x) {
@@ -36,7 +29,6 @@ public:
         }
         return parent[x];
     }
-
     
     void unionSets(int x, int y) {
         int rootX = find(x);
@@ -55,13 +47,9 @@ public:
     }
 };
 
-
-void kruskalMST(int vertices, vector<Edge> &edges) {
-   
+void kruskalMST(int vertices, vector<Edge> &edges) { 
     sort(edges.begin(), edges.end());
-
     DSU dsu(vertices);
-
     vector<Edge> mst; 
     int mstWeight = 0;
 
@@ -73,7 +61,6 @@ void kruskalMST(int vertices, vector<Edge> &edges) {
         }
     }
 
-   
     cout << "Edges in the Minimum Spanning Tree:\n";
     for (const auto &edge : mst) {
         cout << edge.src << " -- " << edge.dest << " == " << edge.weight << "\n";
@@ -92,8 +79,6 @@ int main() {
         {1, 2, 2},
         {2, 3, 4}
     };
-
     kruskalMST(vertices, edges);
-
     return 0;
 }
